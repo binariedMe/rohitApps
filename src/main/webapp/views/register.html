@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-7 border2Solid">
+
+            <form class="form-horizontal" role="form" name="regForm" novalidate ng-submit="registerMe(formData)">
+                <h1 class="text-center">Please Enter The Information</h1>
+
+                <div class="form-group">
+                    <div class="row">
+                        <p class="col-sm-1"></p>
+                        <label for="email" class="col-sm-4">Email Id:</label>
+                        <div class="col-sm-4 minHeight" >
+                            <input type="email" name="email" ng-model="formData.email" id="email" placeholder="Your Email-Id" required ng-change="checkDuplicate(formData.email)"><br>
+                            <span class="text-danger" ng-show="regForm.email.$dirty && regForm.email.$invalid && !regForm.email.$error.required">Please enter a valid email</span>
+                            <span class="text-danger" ng-show="(regForm.email.$dirty || submitted) && regForm.email.$error.required">Please enter an email...</span>
+                            <span ng-show="duplicateEmail" class="text-danger">This email is already taken</span>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <p class="col-sm-1"></p>
+                        <label for="name" class="col-sm-4">Your Name:</label>
+                        <div class="col-sm-4 minHeight">
+                            <input type="text" name="name" ng-model="formData.name" id="name" placeholder="Your Name" required>
+                            <span class="text-danger" ng-show="(regForm.name.$dirty || submitted) && regForm.name.$error.required">Please enter a Name...</span>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <p class="col-sm-1"></p>
+                        <label for="password" class="col-sm-4">Password:</label>
+                        <div class="col-sm-4 minHeight">
+                            <input type="password" name="password" ng-model="formData.password" id="password" placeholder="Password" required>
+                            <span class="text-danger" ng-show="(regForm.password.$dirty || submitted) && regForm.password.$error.required">Please enter a Password...</span>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <p class="col-sm-1"></p>
+                        <label for="repeat" class="col-sm-4">Repeat Password:</label>
+                        <div class="col-sm-4 minHeight">
+                            <input type="password" name="rePass" ng-model="formData.rePass" id="repeat" placeholder="Repeat Password" required>
+                            <span class="text-danger" ng-show="(regForm.rePass.$dirty || submitted) && regForm.rePass.$error.required">Please confirm Password...</span>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <p class="col-sm-5"></p>
+                    <div class="col-sm-6">
+                        <input type="checkbox" id="agreement" name="agreement" ng-model="formData.agreement" required>
+                        <label for="agreement">I accept&nbsp&nbsp</label><a href="javascript: void(0)" style="cursor:help" class="text-info">Terms and conditions</a><br>
+                        <span class="text-danger" ng-show="(regForm.agreement.$dirty || submitted) && regForm.agreement.$error.required">You must agree the terms and conditions to proceed...</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <p class="col-sm-5"></p>
+                    <button type="submit" name="register" class="btn btn-primary">Register</button>
+                </div>
+                <div class="row">
+                    <p class="col-sm-4"></p>
+                    <a href="rapps.in/#/login" class="text-success">Already Registered! Log In Here</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>
+
+

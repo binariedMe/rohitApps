@@ -1,0 +1,50 @@
+.backGainsBoro{
+    background-color: #dcdcdc;
+}
+.border2Solid{
+    border : 2px solid;
+}
+.backGray{
+    background-color: gray;
+}
+.noFloat{
+    float: none;
+}
+.backBlue{
+    background-color: blue;
+}
+.msgDiv{
+    height: 300px;
+    overflow-y: auto;
+}
+.sender{
+    background-color: lightblue;
+}
+.receiver{
+    background-color: lightgray;
+}
+.fullWIdth{
+    width: 100%;
+}
+.border1Solid{
+    border: 1px solid;
+}
+ul
+{
+    list-style-type: none;
+}
+.minHeight{
+    min-height: 45px;
+}
+.heightTH{
+    height: 385px;
+}
+/*.minHeightContainer{
+    min-height: 643px;
+}*/
+.fixPosition{
+    position: fixed;
+    bottom: 0;
+    width: inherit;
+}
+

@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 border2Solid">
+
+            <form class="form-horizontal" name="logInForm" role="form" ng-submit="logIn(formData)" novalidate>
+                <h1 class="text-center">Please Enter The Information</h1>
+
+                <div class="form-group">
+                    <div class="row">
+                        <p class="col-sm-2"></p>
+                        <label for="email" class="col-sm-2">Email Id:</label>
+                        <div class="col-sm-4 minHeight">
+                            <input type="email" name="email" ng-model="formData.email" id="email" placeholder="Your Email-Id" required class="input_field Registration"><br>
+                            <span class="text-danger" ng-show="logInForm.email.$dirty && logInForm.email.$invalid && !logInForm.email.$error.required">Please enter a valid email</span>
+                            <span class="text-danger" ng-show="(logInForm.email.$dirty || submitted) && logInForm.email.$error.required">Please enter an email...</span>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <p class="col-sm-2"></p>
+                        <label for="password" class="col-sm-2">Password:</label>
+                        <div class="col-sm-4 minHeight">
+                            <input type="password" name="password" ng-model="formData.password" id="password" placeholder="Password" required class="input_field Registration">
+                            <span class="text-danger" ng-show="(logInForm.password.$dirty || submitted) && logInForm.password.$error.required">Please enter password...</span>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <p class="col-sm-4"></p>
+                    <button type="submit" name="Login" class="btn btn-success">Log In</button>
+                </div>
+                <div class="row">
+                    <p class="col-sm-4"></p>
+                    <a href="rapps.in/#/register">New User Register</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-3"></div>
+
+    </div>
+</div>
+
+
