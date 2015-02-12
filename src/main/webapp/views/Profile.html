@@ -8,7 +8,6 @@
             <button class="btn btn-sm btn-danger" ng-click="logOUT()">LOGOUT</button>
         </div>
     </div>
-    {{user}}
     <div class="row">
         <div class="col-sm-4">
             <ul class=" nav nav-pills nav-justified">
@@ -54,10 +53,7 @@
                 </div>
              </div>
             <div ng-show="activeTab=='aboutMe'">
-                <button ng-show="!userDetail.editable" class="btn pull-right" ng-click="editDetail()">Edit</button>
-                <button ng-show="userDetail.editable" class="btn pull-right" ng-click="saveDetail()">Save</button>
-                <div ng-show="userDetail.editable">save me</div>
-                <div ng-show="!userDetail.editable">edit me</div>
+
             </div>
         </div>
         <div class="col-sm-4 text-right">

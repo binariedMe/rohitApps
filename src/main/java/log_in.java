@@ -45,10 +45,14 @@ public class log_in extends HttpServlet {
 				String pass = null;
 				int count = 0;
 				while(rs.next()){
+					String email = (String) rs.getObject(1);
 					pass = (String) rs.getObject(2);
+					String name = (String) rs.getObject(3);
+					test += "{\"name\":\""+name+"\",\"email\":\""+email+"\"},";
+					count++;
 				}
 				if(pass.equals(Password)){
-					sql = "SELECT * FROM user_detail WHERE user='"+Username+"'";
+					/*sql = "SELECT * FROM user_detail WHERE user='"+Username+"'";
 					pst = con.createStatement();
 					rs = pst.executeQuery(sql);
 
@@ -60,7 +64,7 @@ public class log_in extends HttpServlet {
 						String sex = (String) rs.getObject(4);
 						String address = (String) rs.getObject(5);
 						test += "{\"name\":\""+name+"\",\"email\":\""+email+"\",\"age\":\""+age+"\",\"sex\":\""+sex+"\",\"address\":\""+address+"\"},";
-					}
+					}*/
 
 					if(count !=0 ) {
 						test = test.substring(0, test.length() - 1);
