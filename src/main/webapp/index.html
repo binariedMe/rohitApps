@@ -1,26 +1,41 @@
 <!doctype html>
 <html>
 <head lang="en">
-	<title>Gossips...</title>
-	<link rel="stylesheet" type="text/css" href="bootstrap-3.2.0-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="icon" href="images/favicon.ico" />
-   	<script src="js/jquery-2.0.3.js"></script>
+	<title>RAW - Rohit Apps World</title>
+
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+
+	<link rel="icon" href="images/favicon.ico" />
+
+	<script src="scripts/lib/jquery-2.0.3.js"></script>
+	<script src="bootstrap-3.2.0-dist/js/bootstrap.js"></script>
+
 </head>
+
 <body ng-app="chat-app" class="backGainsBoro" ng-controller="appCtrl">
-<div id="fb-root"></div>
 
-<ng-view></ng-view>
+	<div style="height: 50px; border: 2px solid #444444; border-radius: 6px">Some Header</div>
 
-<script src="js/angular.js"></script>
-<!-- <script src="js/angular-min.js"></script>-->
-<script src="js/require.js"></script>
-<script src="js/angular-route.js"></script>
-<script src="js/underscoreJs.js"></script>
-<script src="scripts/app.js"></script>
-<script src="scripts/log_in.js"></script>
-<script src="scripts/register.js"></script>
-<script src="scripts/user.js"></script>
-<script src="bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+	<ng-view>
+		<div>
+			Loading...
+		</div>
+	</ng-view>
+
+	<div style="height: 50px; border: 2px solid #444444; border-radius: 6px">Some Footer</div>
+
+	<script src="scripts/lib/require.js"></script>
+	<script src="scripts/lib/angular.js"></script>
+	<script src="scripts/lib/angular-route.js"></script>
+	<script src="scripts/lib/underscoreJs.js"></script>
+
+	<script src="scripts/app/route.js"></script>
+	<script src="scripts/app/app.js"></script>
+	<script src="scripts/app/services.js"></script>
+	<script src="scripts/login/LogInCtrl.js"></script>
+	<script src="scripts/register/register.js"></script>
+	<script src="scripts/user/user.js"></script>
+
 </body>
 </html>
