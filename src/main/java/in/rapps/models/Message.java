@@ -2,6 +2,8 @@ package in.rapps.models;
 
 public class Message {
 
+	
+	// Building Message Object
 	private String senderEmail;
 	private String receipientEmail;
 	private String message;

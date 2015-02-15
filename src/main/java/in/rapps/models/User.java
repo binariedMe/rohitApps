@@ -4,12 +4,14 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 public class User {
 	
+	
+	// Building User Object
 	private String firstName;
 	private String lastName;
 	private String fullName;
 	
 	private String email;
-	private Integer phone;
+	private String phone;
 
 	@JsonIgnore
 	private String password;
@@ -56,11 +58,11 @@ public class User {
 		this.email = email;
 	}
 
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

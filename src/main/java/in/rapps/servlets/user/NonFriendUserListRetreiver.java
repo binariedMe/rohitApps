@@ -6,20 +6,15 @@ import in.rapps.utils.UserService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+// Servlet to send the list of users that are not friend with the client
 @WebServlet("/getUserList")
 public class NonFriendUserListRetreiver extends HttpServlet {
 
@@ -35,13 +30,16 @@ public class NonFriendUserListRetreiver extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		// Populating local variables with request data
 		String userName = request.getParameter("user");
 		
+		// Populating users' arraylist with users that are not friend with client
 		List<User> users = UserService.getNonFriendUserList(userName);
 		
+		// build JSON of users arraylist
 		String nonFriendUsersJson = JsonBuilder.getUsersJson(users);
 		
+		// send the users' list to client
 		out.print(nonFriendUsersJson);
 		
 	}

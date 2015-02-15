@@ -4,7 +4,7 @@
             <img class="img-responsive img-rounded" src="images/avtar.jpg">
         </div>
         <div class="pull-right">
-            <h2><a href="javascript:void(0)">{{user.name}}</a></h2>
+            <span><strong><a href="javascript:void(0)">{{user.fullName}}</a></strong></span>
             <button class="btn btn-sm btn-danger" ng-click="logOUT()">LOGOUT</button>
         </div>
     </div>
@@ -24,9 +24,9 @@
             <ol>
                 <li ng-repeat="friend in friendList track by $index">
                     <span ng-click="addToChat(friend)" ng-class="chatPerson==friend?'btn-primary':'btn-success'" class="btn">
-                        {{friend.userName}}
+                        {{friend.fullName}}
                     </span>
-                    <span class="btn close noFloat" ng-click="removeFriend(friend.userEmail)">&times;</span>
+                    <span class="btn close noFloat" ng-click="removeFriend(friend.email)">&times;</span>
                 </li>
             </ol>
         </div>
@@ -34,15 +34,15 @@
             <br><br><br>
             <div ng-show="activeTab=='chat' && chatPerson" class="border1Solid fixPosition">
                 <div class="backGray">
-                    <h3>{{chatPerson.userName}}</h3>
+                    <h3>{{chatPerson.fullName}}</h3>
                 </div>
-               <div class="msgDiv">
-                   <div ng-repeat="chat in chatMessages">
-                       <div ng-class="chat.sender==user.email? 'sender text-left':'receiver text-right'" ng-class-even="text-danger">
-                           {{chat.message}}
-                       </div>
-                   </div>
-               </div>
+                <div class="msgDiv">
+                    <div ng-repeat="chat in chatMessages">
+                        <div ng-class="chat.senderEmail==user.email? 'sender text-left':'receiver text-right'" ng-class-even="text-danger">
+                            {{chat.message}}
+                        </div>
+                    </div>
+                </div>
                 <form ng-submit="msgSubmit()">
                     <input type="text" ng-model="message" name="message" class="fullWIdth">
                 </form>
@@ -51,9 +51,12 @@
                 <div class="backGray">
                     <h3>Please click on one of your friend to chat with...</h3>
                 </div>
-             </div>
+            </div>
             <div ng-show="activeTab=='aboutMe'">
 
+
+                <edit-about-me ng-show="editable"></edit-about-me>
+                <display-about-me ng-show="!editable"></display-about-me>
             </div>
         </div>
         <div class="col-sm-4 text-right">
@@ -61,7 +64,7 @@
             <input ng-model="searchText" placeholder="Search by name or email">
             <ul>
                 <li ng-repeat="user in userList | filter:searchText track by $index" ng-click="addFriend(user)">
-                    <a href="javascript:void(0)">{{user.userName}}</a>
+                    <a href="javascript:void(0)">{{user.fullName}}</a>
                 </li>
             </ul>
         </div>

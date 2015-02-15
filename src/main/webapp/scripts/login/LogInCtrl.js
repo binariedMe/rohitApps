@@ -1,7 +1,7 @@
 app.controller('logInController',
-    ['$scope', '$location', 'angularPostService',
-        function($scope, $location, angularPostService){
-
+    ['$scope', '$location', 'angularPostService','$window',
+        function($scope, $location, angularPostService, $window){
+            $scope.containerHeight = $window.innerHeight;
             if(localStorage) {
                 var emailATLS = localStorage.getItem("email");
                 var passATLS = localStorage.getItem("password");
@@ -11,8 +11,9 @@ app.controller('logInController',
                     var url = "/log_in";
 
                     angularPostService.serve(data, url).then(function(userData){
-                        if(userData && userData.indexOf('false')==-1) {
-                            $location.url("user");
+                        console.log(userData);
+                        if(userData && userData !=='false') {
+                            $location.url("chooseApp");
                             return;
                         }
                         else {
@@ -28,10 +29,10 @@ app.controller('logInController',
                         data = "user=" + formData.email + "&password=" + formData.password;
                         url = "/log_in";
                         angularPostService.serve(data, url).then(function(status){
-                            if(status && status.indexOf('false')==-1){
+                            if(status && status !== 'false'){
                                 localStorage.setItem("email", formData.email);
                                 localStorage.setItem("password", formData.password);
-                                $location.url("user");
+                                $location.url("chooseApp");
                             }
                             else {
                                 alert("Either Username or password is incorrect");

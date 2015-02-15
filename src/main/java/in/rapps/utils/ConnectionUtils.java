@@ -5,6 +5,7 @@ import in.rapps.config.RappConstants;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+// A utility to connect Tomcat server to mysql database server
 public class ConnectionUtils {
 
 	public static Connection con;

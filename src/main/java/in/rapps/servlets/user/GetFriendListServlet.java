@@ -1,13 +1,11 @@
 package in.rapps.servlets.user;
-import java.io.IOException;
+import in.rapps.models.User;
+import in.rapps.utils.JsonBuilder;
+import in.rapps.utils.UserService;
 
+import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+// Servlet to send the list of friend of client
 @WebServlet("/getFriendList")
 public class GetFriendListServlet extends HttpServlet {
 
@@ -23,48 +23,27 @@ public class GetFriendListServlet extends HttpServlet {
 			throws ServletException, IOException, NumberFormatException, NullPointerException {
 
 		response.setContentType("text/html;charset=UTF-8");
-
-		PrintWriter out = response.getWriter();
-		String user = request.getParameter("user");
-
-		Connection con;
-
+		
+		PrintWriter out = null;
+		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/chat?autoReconnect=true", "root", "");
-			try {
-				Statement pst;
-				String sql = "SELECT * FROM friend_list WHERE USER='"+user+"'";
-				pst = con.createStatement();
-				ResultSet rs = pst.executeQuery(sql);
-				String test = "[";
-				
-				int count = 0;
-				
-				while(rs.next()) {
-					count++;
-					String userEmail = (String) rs.getObject(2);
-					String userName = (String) rs.getObject(3);
-					test += "{\"userName\":\""+userName+"\",\"userEmail\":\""+userEmail+"\"},";
-				}
-				
-				if(count !=0 ) {
-					test = test.substring(0, test.length() - 1);
-				}
-
-			out.println(test + "]");	
-				pst.close();
-				if(con != null)
-					con.close();
-
-			} catch (SQLException e) {
-				out.print("message");
-				con.close();
-			}
-
-
-		} catch (Exception ex) {
-			out.print("messagessss");
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		
+		// Populating local variables with request data
+		String userName = request.getParameter("user");
+		
+		// Populating friend arraylist with list of friend of client
+		List<User> friendList = UserService.getFriendList(userName);
+
+		
+		// Build JSON of friend arraylist
+		String friendListJson = JsonBuilder.getUsersJson(friendList);
+		
+		// Send friend list to client
+		out.print(friendListJson);
+
 	}
 }

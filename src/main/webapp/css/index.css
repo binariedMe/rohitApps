@@ -47,4 +47,20 @@ ul
     bottom: 0;
     width: inherit;
 }
+.javaBackground{
+    background-image: url("../images/javaTest.jpg");
+}
+.javaBackground:hover{
+    cursor: pointer;
+}
+.nodeBackground{
+    background-image: url("../images/nodejs.jpg");
+}
+.nodeBackground:hover{
+    cursor: pointer;
+}
+.moreAppBackground{
+    background-image: url("../images/apps1.jpg");
+}
+
 

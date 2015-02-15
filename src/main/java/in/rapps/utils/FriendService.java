@@ -9,6 +9,7 @@ import java.util.List;
 
 import in.rapps.models.User;
 
+// Class to handle request related to friend of requester
 public class FriendService {
 
 	static Connection con;
@@ -16,16 +17,17 @@ public class FriendService {
 	static {
 		con = ConnectionUtils.con;
 	}
-
+	// Method to add a friend in friend list of requester
 	public static boolean addFriend(String userName, String friendEmail, String friendName) {
 
+		// initialize status of addition of friend 
 		boolean isAdded = false;
 
 		if(con == null) {
 			return isAdded;
 		}
-
-		String sql = "insert into friend_list ( user, friend, friend_name) "
+		// sql statement to add friend to friend list
+		String sql = "insert into friend ( user_email, friend_email, friend_name) "
 				+ "values('" + userName + "','" + friendEmail + "','" + friendName + "')";
 
 		Statement pst = null;
@@ -33,6 +35,7 @@ public class FriendService {
 		try {
 			pst = con.createStatement();
 			int x = pst.executeUpdate(sql);
+			// set addition flag to true if successful addition, false otherwise
 			isAdded = (x > 0);
 		}
 		catch(Exception e) {
@@ -48,26 +51,32 @@ public class FriendService {
 				}
 			}
 		}
-
+		// return addition of friend flag 
 		return isAdded;
 
 	}
 
+
+	// Method to remove friend
 	public static boolean removeFriend(String userName, String friendEmail) {
 
+
+		// initialize friend removal flag
 		boolean isRemoved = false;
 
 		if(con == null) {
 			return isRemoved;
 		}
 
-		String sql = "delete from friend_list where user='" + userName + "' and friend='" + friendEmail + "'";
-		
+		// sql statement for removing friend from friend list of requester
+		String sql = "delete from friend where user_email='" + userName + "' and friend_email='" + friendEmail + "'";
+
 		Statement pst = null;
 
 		try {
 			pst = con.createStatement();
 			int x = pst.executeUpdate(sql);
+			// set friend removal flag to true if successful removal, false otherwise
 			isRemoved = (x > 0);
 		}
 		catch(Exception e) {
@@ -83,7 +92,7 @@ public class FriendService {
 				}
 			}
 		}
-
+		// return friend removal status
 		return isRemoved;
 
 	}

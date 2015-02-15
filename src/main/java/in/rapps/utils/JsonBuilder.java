@@ -9,12 +9,15 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import in.rapps.models.User;
 
+// JSON builder class
 public class JsonBuilder {
 	
 	//volatile static ObjectMapper objMapper = new ObjectMapper();
 	
 	static ObjectMapper objMapper = new ObjectMapper();
 	
+	
+	// Build JSON for user object
 	public static String getUserJson(User user) {
 		try {
 			return objMapper.writeValueAsString(user);
@@ -28,7 +31,7 @@ public class JsonBuilder {
 		
 		return null;
 	}
-	
+	// Build JSON for user list object
 	public static String getUsersJson(List<User> users) {
 		try {
 			return objMapper.writeValueAsString(users);
@@ -41,7 +44,7 @@ public class JsonBuilder {
 		}
 		return null;
 	}
-	
+	// Build JSON for any given object
 	public static String getObjectJson(Object obj) {
 		try {
 			return objMapper.writeValueAsString(obj);

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+// Servled to register client 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 
@@ -29,13 +31,13 @@ public class RegisterServlet extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+// Populating local variables with request data
 		String userName = request.getParameter("user");
 		String password = request.getParameter("password");
 		String fullName = request.getParameter("name");
-
+// set flag after registering a client
 		boolean registrationSuccess = UserService.registerUser(userName, password, fullName);
-		
+		// send the registration status to client
 		out.print(registrationSuccess);
 	}
 }

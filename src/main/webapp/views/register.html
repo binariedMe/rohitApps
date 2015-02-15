@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" ng-style="{'minHeight':containerHeight}">
     <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-7 border2Solid">
@@ -11,10 +11,10 @@
                         <p class="col-sm-1"></p>
                         <label for="email" class="col-sm-4">Email Id:</label>
                         <div class="col-sm-4 minHeight" >
-                            <input type="email" name="email" ng-model="formData.email" id="email" placeholder="Your Email-Id" required ng-change="checkDuplicate(formData.email)"><br>
+                            <input type="email" name="email" ng-model="formData.email" id="email" placeholder="Your Email-Id" required ng-blur="checkDuplicate(formData.email)"><br>
                             <span class="text-danger" ng-show="regForm.email.$dirty && regForm.email.$invalid && !regForm.email.$error.required">Please enter a valid email</span>
                             <span class="text-danger" ng-show="(regForm.email.$dirty || submitted) && regForm.email.$error.required">Please enter an email...</span>
-                            <span ng-show="duplicateEmail" class="text-danger">This email is already taken</span>
+                            <span ng-show="duplicateEmail && formData.email" class="text-danger">This email is already taken</span>
                         </div>
 
 

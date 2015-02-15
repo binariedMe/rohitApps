@@ -1,6 +1,7 @@
-app.controller('registerController',['$scope', '$location', 'angularPostService', '$http', '_',
-    function($scope, $location, angularPostService, $http, _){
-
+app.controller('registerController',
+    ['$scope', '$location', 'angularPostService', '$http', '_','$window',
+    function($scope, $location, angularPostService, $http, _, $window){
+        $scope.containerHeight = $window.innerHeight;
         if(localStorage) {
             var emailATLS = localStorage.getItem("email");
             var passATLS = localStorage.getItem("password");
@@ -10,8 +11,8 @@ app.controller('registerController',['$scope', '$location', 'angularPostService'
                 var url = "/log_in";
 
                 angularPostService.serve(data, url).then(function (userData) {
-                    if (userData && userData.indexOf('false') == -1) {
-                        $location.url("user");
+                    if (userData && userData !== 'false') {
+                        $location.url("chooseApp");
                         return;
                     }
                     else {
@@ -21,16 +22,20 @@ app.controller('registerController',['$scope', '$location', 'angularPostService'
                 });
             }
 
-            $http.get('/getUsers').success(function(data){
-                $scope.Users = data;
-            });
             $scope.formData = {};
             $scope.checkDuplicate = function(email){
-                if(_.findWhere($scope.Users,{userEmail:email}))
-                    $scope.duplicateEmail = true;
-                else
-                    $scope.duplicateEmail = false;
-
+                console.log(email);
+                var data = "userName="+email;
+                var url = "/isUserNameAvailable";
+                angularPostService.serve( data , url).then(function(status){
+                   if(status && status!== 'false'){
+                       console.log("in if",$scope.duplicateEmail);
+                       $scope.duplicateEmail = false;
+                   }
+                    else {$scope.duplicateEmail = true;
+                   console.log("in else",$scope.duplicateEmail);
+                   }
+                });
             };
 
             $scope.registerMe = function(formData){
@@ -43,10 +48,10 @@ app.controller('registerController',['$scope', '$location', 'angularPostService'
                         var data = "user=" + formData.email + "&password=" + formData.password + "&name="+ formData.name;
                         var url = "/register";
                         angularPostService.serve(data, url).then(function(status){
-                            if(status){
+                            if(status && status !== 'false'){
                                 localStorage.setItem("email", formData.email);
                                 localStorage.setItem("password", formData.password);
-                                $location.url("user")
+                                $location.url("chooseApp")
                             }
                             else {
                                 alert("Registration Unsuccessful!!!");

@@ -2,6 +2,7 @@ package in.rapps.models;
 
 public class Address {
 
+	// Building Address Object
 	private String city;
 	private String state;
 	private String country;

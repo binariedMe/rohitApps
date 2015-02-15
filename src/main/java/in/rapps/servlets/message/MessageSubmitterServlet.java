@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+// Servlet to submit message
 @WebServlet("/submitMessage")
 public class MessageSubmitterServlet extends HttpServlet {
 
@@ -25,13 +26,16 @@ public class MessageSubmitterServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 		
+		// Populating local veriables with request data
 		String userName = request.getParameter("user");
 		String recepientEmail = request.getParameter("recepient");
 		String message = request.getParameter("message");
 		
+		// Submit the message in database and reply true if successful, false otherwise
 		boolean isMessageSubmitted = MessageService.submitMessage(userName, recepientEmail, message);
 		
 		if(out != null) {
+			
 			out.print(isMessageSubmitted);
 		}
 		

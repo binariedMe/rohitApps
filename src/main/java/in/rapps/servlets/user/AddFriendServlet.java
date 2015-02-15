@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+// Servlet to add a requested user to the friend list of client
 @WebServlet("/addFriend")
 public class AddFriendServlet extends HttpServlet {
 
@@ -31,13 +32,17 @@ public class AddFriendServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		// Populating local variables with request data
 		String userName = request.getParameter("user");
 		String friendEmail = request.getParameter("friend");
 		String friendName = request.getParameter("friend_name");
 
+		
+		// Add the friend to database of client and return status as true if successful, false otherwise
 		boolean isFriendAdded = FriendService.addFriend(userName, friendEmail, friendName);
 
 		if(out != null) {
+			// send friend addition status to client
 			out.print(isFriendAdded);
 		}
 		
