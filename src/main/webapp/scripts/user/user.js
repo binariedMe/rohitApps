@@ -5,14 +5,13 @@ var userController = app.controller('userController',
             $scope.containerHeight = $window.innerHeight;
 
             $scope.user = $scope.profileDetail = $route.current.locals.userData;
-
             $scope.profileDetail.address = $scope.profileDetail.address ?
                 $scope.profileDetail.address : {};
             $scope.profileDetail.address.zipCode = $scope.profileDetail.address.zipCode != 0?$scope.profileDetail.address.zipCode:null;
             $scope.addressString = function(addressObject){
                 addressObject = _.values(addressObject);
                 var addressString = "";
-                (_.without((_.values(addressObject)),undefined,"")).forEach(function(entry){
+                (_.without((_.values(addressObject)),undefined,"", "undefined")).forEach(function(entry){
                     addressString += (entry + ",");
                 });
                 addressString = addressString.substring(0,addressString.length-1);
