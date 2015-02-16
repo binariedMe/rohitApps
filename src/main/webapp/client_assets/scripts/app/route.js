@@ -12,25 +12,25 @@ app.config(function ($routeProvider) {
             redirectTo : '/user'
         })
         .when('/register', {
-            templateUrl: 'views/register.html',
+            templateUrl: 'client_assets/views/register.html',
             controller: 'registerController'
         })
         .when('/login', {
-            templateUrl: 'views/log_in.html',
+            templateUrl: 'client_assets/views/log_in.html',
             controller: 'logInController'
         })
         .when('/user', {
-            templateUrl: 'views/user.html',
+            templateUrl: 'client_assets/views/user.html',
             controller: 'userController',
             resolve : {
                 userData : userController.getLiveSession
             }
         })
         .when('/chooseApp',{
-            templateUrl: 'views/chooseApp.html',
+            templateUrl: 'client_assets/views/chooseApp.html',
             controller: 'chooseAppCtrl'
         })
         .otherwise({
-            templateUrl : 'views/404.html'
+            templateUrl : 'client_assets/views/404.html'
         });
 });

@@ -1,6 +1,10 @@
 {
   "name": "mean-demo",
   "version": "0.0.1",
+  "scripts": {
+    "start": "node server",
+    "test_mongo": "node rappsMongoose/rappsMongoose"
+  },
   "dependencies": {
     "express": "~4.11.2",
     "body-parser": "~1.11.0",

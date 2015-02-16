@@ -1,3 +1,5 @@
+var rappMongoose = require('../../rappsMongoose/index');
+
 module.exports = {
     create : function (req, res) {
         var meetup = new Meetup(req.body);
@@ -10,7 +12,10 @@ module.exports = {
             res.json(results);
         })
     },
-    logIn: function(req, res){
+    login: function(req, res){
+        res.json(req.body);
+    },
+    register: function(req, res){
         res.json(req.body);
     }
 };

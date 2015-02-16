@@ -1,17 +1,27 @@
+var rappMongoose = require('../../rappsMongoose/schemas/friend'),
+    friendModel = rappMongoose.friendModel;
+
 module.exports = {
     create : function (req, res) {
-        var meetup = new Meetup(req.body);
-        meetup.save(function (err, result) {
-            res.json(result);
-        });
+
     },
     list : function(req, res){
-        Meetup.find({},function(err,results){
-            res.json(results);
-        })
+
     },
     addFriend: function(req, res){
-        res.end("Request for removing acknowledged!");
+
+        var userEmail = 'test5555@gmail.com'; // req.param
+        var friendEmail = 'test5555'; // req.param
+        var friendName = 'test55555'; // req.param
+
+        var firstFriend = new friendModel({ user_email: userEmail, friend_email: friendEmail, friend_name: friendName});
+
+        firstFriend.save(function (err) {
+            console.log('meow', err);
+        });
+
+        res.send("Request for adding friend completed!");
+
     },
     removeFriend: function(req, res){
         res.end("Request for removing acknowledged!");

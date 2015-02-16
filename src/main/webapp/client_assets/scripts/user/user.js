@@ -182,12 +182,12 @@ userController.getLiveSession = function($q, angularPostService){
 var editAboutMeDirective = app.directive('editAboutMe',function(){
     return{
         restrict : 'E',
-        templateUrl : 'views/editAboutMe.html'
+        templateUrl : 'client_assets/views/editAboutMe.html'
     }
 });
 var displayAboutMeDirective = app.directive('displayAboutMe', function(){
     return{
         restrict : 'E',
-        templateUrl : 'views/displayAboutMe.html'
+        templateUrl : 'client_assets/views/displayAboutMe.html'
     }
 });
