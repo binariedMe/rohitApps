@@ -1,14 +1,12 @@
 package in.rapps.utils;
 
+import in.rapps.models.Message;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import in.rapps.models.Message;
-import in.rapps.models.User;
 
 // Class to handle chat service of requester
 public class MessageService {
