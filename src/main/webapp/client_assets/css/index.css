@@ -62,5 +62,13 @@ ul
 .moreAppBackground{
     background-image: url("../images/apps1.jpg");
 }
+#javaHeader{
+    display: inline;
+}
+.hdrFtr{
+    height: 50px;
+    border: 2px solid #444444;
+    border-radius: 6px
+}
 
 

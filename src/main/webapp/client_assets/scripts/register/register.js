@@ -1,7 +1,9 @@
 app.controller('registerController',
-    ['$scope', '$location', 'angularPostService', '$http', '_','$window',
-    function($scope, $location, angularPostService, $http, _, $window){
+    ['$scope', '$location', 'angularPostService', '$http', '_','$window', '$rootScope',
+    function($scope, $location, angularPostService, $http, _, $window, $rootScope){
         $scope.containerHeight = $window.innerHeight;
+        $rootScope.headerText = "Welcome to Rohit App World!";
+        $rootScope.backToServerChoice = false;
         if(localStorage) {
             var emailATLS = localStorage.getItem("email");
             var passATLS = localStorage.getItem("password");
@@ -24,16 +26,13 @@ app.controller('registerController',
 
             $scope.formData = {};
             $scope.checkDuplicate = function(email){
-                console.log(email);
                 var data = "userName="+email;
                 var url = "/isUserNameAvailable";
                 angularPostService.serve( data , url).then(function(status){
                    if(status && status!== 'false'){
-                       console.log("in if",$scope.duplicateEmail);
                        $scope.duplicateEmail = false;
                    }
                     else {$scope.duplicateEmail = true;
-                   console.log("in else",$scope.duplicateEmail);
                    }
                 });
             };

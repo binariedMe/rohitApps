@@ -3,7 +3,8 @@ var userController = app.controller('userController',
         function($rootScope, $scope, angularPostService, $http, $route, $location, _, $timeout, $window){
 
             $scope.containerHeight = $window.innerHeight;
-
+            $rootScope.headerText = "Java Chat Server";
+            $rootScope.backToServerChoice = true;
             $scope.user = $scope.profileDetail = $route.current.locals.userData;
             $scope.profileDetail.address = $scope.profileDetail.address ?
                 $scope.profileDetail.address : {};
@@ -11,7 +12,7 @@ var userController = app.controller('userController',
             $scope.addressString = function(addressObject){
                 addressObject = _.values(addressObject);
                 var addressString = "";
-                (_.without((_.values(addressObject)),undefined,"", "undefined")).forEach(function(entry){
+                (_.without((_.values(addressObject)),undefined,"", "undefined", 0, null, "null")).forEach(function(entry){
                     addressString += (entry + ",");
                 });
                 addressString = addressString.substring(0,addressString.length-1);
@@ -44,8 +45,9 @@ var userController = app.controller('userController',
                 })
             };
             $scope.removeFriend = function(email){
-                if($scope.chatPerson && $scope.chatPerson.userEmail && $scope.chatPerson.userEmail==email)
+                if($scope.chatPerson && $scope.chatPerson.email && $scope.chatPerson.email==email)
                     $scope.chatPerson = null;
+
                 var data="user=" + $scope.user.email + "&friend=" + email;
                 var url = '/removeFriend';
                 angularPostService.serve(data,url).then(function(){
@@ -112,10 +114,30 @@ var userController = app.controller('userController',
                             : profileDetail.firstName;
                     }
                     $scope.profileDetail.address.zipCode = $scope.profileDetail.address.zipCode != null?$scope.profileDetail.address.zipCode:0;
-                    if($scope.profileDetail.address.zipCode != null && $scope.profileDetail.address.zipCode < 100000){
+                    if($scope.profileDetail.address.zipCode && $scope.profileDetail.address.zipCode < 100000){
                         alert("Invalid zip code");
                         return;
                     }
+
+                    var defaultAddress = {
+                        city : "",
+                        state : "",
+                        country : "",
+                        landMark : "",
+                        addressLine1 : "",
+                        addressLine2 : "",
+                        zipCode : ""
+                    };
+                    var defaultUserData = {
+                        email : "",
+                        firstName : "",
+                        lastName : "",
+                        fullName : "",
+                        phone : ""
+                    };
+                    _.defaults(profileDetail.address, defaultAddress);
+                    _.defaults(profileDetail,defaultUserData);
+                    console.log(profileDetail);
                     var data = "user=" + $scope.user.email
                         + "&firstName=" + profileDetail.firstName
                         + "&lastName=" + profileDetail.lastName
