@@ -4,6 +4,7 @@ var userController = app.controller('userController',
 
             $rootScope.headerText = "Java Chat Server";
             $rootScope.backToServerChoice = true;
+            $rootScope.showLogoutBtn = true;
             $scope.user = $scope.profileDetail = $route.current.locals.userData;
             $scope.profileDetail.address = $scope.profileDetail.address ?
                 $scope.profileDetail.address : {};
