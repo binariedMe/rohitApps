@@ -1,15 +1,30 @@
 <div class="container">
-    <div class="row"><button class="btn btn-sm btn-danger pull-right" ng-click="logOUT()">LOGOUT</button></div>
-    <div class="row">
-        <div class="col-sm-4 javaBackground" style="border: 2px solid" ng-style="{'minHeight':containerHeight}" ng-click="gtJava()">
-            <h1>Java Chat Server</h1>
+    <div class="row appLauncherContainer">
+        <div class="col-sm-3">
+            <div>Java Chat Server</div>
+            <div class="appLauncherImageContainer" ng-click="gtJava()">
+                <img class="appLauncherImage" src="/client_assets/images/javaTest.jpg">
+            </div>
         </div>
-        <div class="col-sm-4 moreAppBackground" style="border: 2px solid" ng-style="{'minHeight':containerHeight}">
-            <h1 class="text-danger">Other Applications</h1>
-            <p class="text-info">Coming soon...</p>
+
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-3">
+            <div>Other Applications</div>
+            <div>Coming soon...</div>
+            <div class="appLauncherImageContainer disabled">
+                <img class="appLauncherImage" src="/client_assets/images/apps1.jpg">
+            </div>
         </div>
-        <div class="col-sm-4 nodeBackground" style="border: 2px solid" ng-style="{'minHeight':containerHeight}" ng-click="rtNode()">
-            <h1>Node Chat Server</h1>
+
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-3">
+            <div>Node Chat Server</div>
+            <div class="appLauncherImageContainer" ng-click="rtNode()">
+                <img class="appLauncherImage" src="/client_assets/images/nodejs.jpg">
+            </div>
         </div>
+
     </div>
 </div>

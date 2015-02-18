@@ -16,18 +16,28 @@
 <body ng-app="chat-app" class="backGainsBoro" ng-controller="appCtrl">
 
 <header class="hdrFtr">
-    <div class="text-center">
-        <h3 id="javaHeader">{{headerText}}</h3>
+    <div class="pull-left">
+        <span>{{headerText}}</span>
     </div>
-    <span ng-show="backToServerChoice" class="pull-right"><a ng-href="/#/chooseApp">Select a different Server</a></span>
+    <div class="pull-right" ng-show="showLogoutBtn">
+        <button class="btn btn-sm btn-danger" ng-click="logOUT()">LOGOUT</button>
+    </div>
+    <span ng-show="backToServerChoice" class="pull-right chooseAppLink">
+        <a ng-href="/#/chooseApp">Change App</a>
+    </span>
 </header>
-<div ng-style="{'minHeight':containerHeight}">
+
+<div class="dashboard" ng-style="{'minHeight':containerHeight}">
     <div ng-view>
         Loading...
     </div>
 </div>
 
-
+<footer class="hdrFtr">
+    <div class="pull-left">
+        <span>Disclaimer: Here we need to put some very strict disclaimer and warning.</span>
+    </div>
+</footer>
 
 <script src="client_assets/scripts/lib/require.js"></script>
 <script src="client_assets/scripts/lib/angular.js"></script>
@@ -41,7 +51,6 @@
 <script src="client_assets/scripts/register/register.js"></script>
 <script src="client_assets/scripts/chooseApp/chooseAppCtrl.js"></script>
 <script src="client_assets/scripts/user/user.js"></script>
-
 
 </body>
 </html>

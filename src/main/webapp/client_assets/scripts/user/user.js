@@ -2,7 +2,6 @@ var userController = app.controller('userController',
     ['$rootScope', '$scope', 'angularPostService', '$http', '$route', '$location','_', '$timeout', '$window',
         function($rootScope, $scope, angularPostService, $http, $route, $location, _, $timeout, $window){
 
-            $scope.containerHeight = $window.innerHeight;
             $rootScope.headerText = "Java Chat Server";
             $rootScope.backToServerChoice = true;
             $scope.user = $scope.profileDetail = $route.current.locals.userData;
@@ -87,16 +86,6 @@ var userController = app.controller('userController',
                         $timeout($scope.fetchMessage, 1000);
                     })
                 }
-            };
-
-            /*
-             The logout implementation as of now just removes the data
-             stored in local storage.
-             */
-            $scope.logOUT = function(){
-                localStorage.removeItem("email");
-                localStorage.removeItem("password");
-                $location.url('/login');
             };
 
             $scope.editProfile = function(){

@@ -2,8 +2,8 @@ app.controller('logInController',
     ['$scope', '$location', 'angularPostService','$window','$rootScope',
         function($scope, $location, angularPostService, $window, $rootScope){
             $scope.containerHeight = $window.innerHeight;
-            $rootScope.headerText = "Welcome to Rohit App World!";
             $rootScope.backToServerChoice = false;
+            $rootScope.showLogoutBtn = false;
             if(localStorage) {
                 var emailATLS = localStorage.getItem("email");
                 var passATLS = localStorage.getItem("password");

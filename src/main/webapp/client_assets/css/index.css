@@ -1,74 +1,107 @@
-.backGainsBoro{
-    background-color: #dcdcdc;
+body {
+  padding: 15px 20px 20px 15px;
+  box-sizing: border-box;
+  height: 100%;
 }
-.border2Solid{
-    border : 2px solid;
+.hdrFtr {
+  height: 60px;
+  border: 2px solid #444444;
+  border-radius: 6px;
+  padding: 10px 30px;
+  background-color: #000099;
+  color: #98FF14;
+  box-sizing: border-box;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: cursive;
 }
-.backGray{
-    background-color: gray;
+.hdrFtr .chooseAppLink {
+  margin-right: 50px;
 }
-.noFloat{
-    float: none;
+header.hdrFtr {
+  margin: 0 0 20px 0;
 }
-.backBlue{
-    background-color: blue;
+footer.hdrFtr {
+  margin: 20px 0 0 0;
 }
-.msgDiv{
-    height: 300px;
-    overflow-y: auto;
+.dashboard {
+  box-sizing: border-box;
 }
-.sender{
-    background-color: lightblue;
+.dashboard .login-form-container,
+.dashboard .register-form-container {
+  border: 3px solid #000099;
+  border-radius: 6px;
+  padding: 10px 20px;
 }
-.receiver{
-    background-color: lightgray;
+.dashboard .login-form-container .registerLink,
+.dashboard .register-form-container .registerLink,
+.dashboard .login-form-container .logInLink,
+.dashboard .register-form-container .logInLink {
+  font-size: 15px;
+  margin-top: 20px;
 }
-.fullWIdth{
-    width: 100%;
+.dashboard .appLauncherContainer {
+  font-size: 25px;
 }
-.border1Solid{
-    border: 1px solid;
+.dashboard .appLauncherContainer .appLauncherImageContainer {
+  width: 200px;
+  cursor: pointer;
 }
-ul
-{
-    list-style-type: none;
+.dashboard .appLauncherContainer .appLauncherImageContainer .appLauncherImage {
+  width: 100%;
 }
-.minHeight{
-    min-height: 45px;
+.dashboard .appLauncherContainer .appLauncherImageContainer.disabled {
+  cursor: auto;
+  opacity: 0.3;
 }
-.heightTH{
-    height: 385px;
+.backGainsBoro {
+  background-color: #dcdcdc;
+}
+.border2Solid {
+  border: 2px solid;
+}
+.backGray {
+  background-color: gray;
+}
+.noFloat {
+  float: none;
+}
+.backBlue {
+  background-color: blue;
+}
+.msgDiv {
+  height: 300px;
+  overflow-y: auto;
+}
+.sender {
+  background-color: lightblue;
+}
+.receiver {
+  background-color: lightgray;
+}
+.fullWIdth {
+  width: 100%;
+}
+.border1Solid {
+  border: 1px solid;
+}
+ul {
+  list-style-type: none;
+}
+.minHeight {
+  min-height: 45px;
+}
+.heightTH {
+  height: 385px;
 }
 /*.minHeightContainer{
     min-height: 643px;
 }*/
-.fixPosition{
-    position: fixed;
-    bottom: 0;
-    width: inherit;
+.fixPosition {
+  position: fixed;
+  bottom: 0;
+  width: inherit;
 }
-.javaBackground{
-    background-image: url("../images/javaTest.jpg");
+#javaHeader {
+  display: inline;
 }
-.javaBackground:hover{
-    cursor: pointer;
-}
-.nodeBackground{
-    background-image: url("../images/nodejs.jpg");
-}
-.nodeBackground:hover{
-    cursor: pointer;
-}
-.moreAppBackground{
-    background-image: url("../images/apps1.jpg");
-}
-#javaHeader{
-    display: inline;
-}
-.hdrFtr{
-    height: 50px;
-    border: 2px solid #444444;
-    border-radius: 6px
-}
-
-
