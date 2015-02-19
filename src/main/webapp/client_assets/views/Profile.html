@@ -1,71 +1,84 @@
-<div class="container border2Solid">
-    <div class="row backGray">
-        <div class="col-sm-2">
-            <img class="img-responsive img-rounded" src="client_assets/images/avtar.jpg">
+<div class="container">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid row">
+            <div class="navbar-header col-sm-4">
+                <div class="col-sm-3">
+                    <img class="img-responsive img-rounded" src="client_assets/images/avtar.jpg">
+                </div>
+                <span><strong class="text-info col-sm-9"><u>Hello,&nbsp;{{user.fullName}}!</u></strong></span>
+            </div>
+            <div class="col-sm-8">
+                <ul class="nav navbar-nav">
+                    <li ng-class="activeTab=='aboutMe'?'active':''" ng-click="activeMe('aboutMe')"><a href="javascript:void(0)"><strong>About Me</strong></a></li>
+                    <li ng-class="activeTab=='chat'?'active':''" ng-click="activeMe('chat')"><a href="javascript:void(0)"><strong>Chat</strong></a></li>
+                    <li ng-class="activeTab=='addFriend'?'active':''" ng-click="activeMe('addFriend')"><a href="javascript:void(0)"><strong>Add Friend</strong></a></li>
+                </ul>
+            </div>
         </div>
-        <div class="pull-right">
-            <span><strong><a href="javascript:void(0)">{{user.fullName}}</a></strong></span>
-        </div>
-    </div>
+    </nav>
     <div class="row">
-        <div class="col-sm-4">
-            <ul class=" nav nav-pills nav-justified">
-                <li ng-class="activeTab=='aboutMe'?'active':''" ng-click="activeTab='aboutMe'"><a href="javascript:void(0)"><strong>About Me</strong></a></li>
-                <li ng-class="activeTab=='chat'?'active':''" ng-click="activeTab='chat'"><a href="javascript:void(0)"><strong>Chat</strong></a></li>
-            </ul>
-        </div>
     </div>
 
-    <div class="row">
 
+    <div class="row" ng-show="activeTab == 'aboutMe'">
+        <edit-about-me ng-show="editable"></edit-about-me>
+        <display-about-me ng-show="!editable"></display-about-me>
+    </div>
+
+    <div class="row" ng-show="activeTab == 'chat'">
         <div class="col-sm-4">
             <h3>Friend List</h3><br>
-            <ol>
-                <li ng-repeat="friend in friendList track by $index">
-                    <span ng-click="addToChat(friend)" ng-class="chatPerson==friend?'btn-primary':'btn-success'" class="btn">
+            <ul class="list-group">
+                <li class="list-group-item" ng-class="chatPerson==friend?'list-group-item-success':''" ng-repeat="friend in friendList track by $index">
+                    <span ng-click="addToChat(friend)" class="btn">
                         {{friend.fullName}}
                     </span>
-                    <span class="btn close noFloat" ng-click="removeFriend(friend.email)">&times;</span>
+                    <span class="btn close pull-right" ng-click="removeFriend(friend.email)">&times;</span>
                 </li>
-            </ol>
+            </ul>
         </div>
-        <div class="col-sm-4" style="position: relative">
-            <br><br><br>
-            <div ng-show="activeTab=='chat' && chatPerson" class="border1Solid fixPosition">
-                <div class="backGray">
-                    <h3>{{chatPerson.fullName}}</h3>
-                </div>
+        <div class="col-sm-5">
+            <div ng-show="chatPerson" class="border1Solid heightTH fixPosition">
+                <h3 class="h3">{{chatPerson.fullName}}</h3>
                 <div class="msgDiv">
-                    <div ng-repeat="chat in chatMessages">
-                        <div ng-class="chat.senderEmail==user.email? 'sender text-left':'receiver text-right'" ng-class-even="text-danger">
+                    <div class="list-group">
+                        <div ng-repeat="chat in chatMessages" ng-class="chat.senderEmail==user.email? 'list-group-item-success text-left':'list-group-item-warning text-right'">
                             {{chat.message}}
                         </div>
                     </div>
                 </div>
                 <form ng-submit="msgSubmit()">
-                    <input type="text" ng-model="message" name="message" class="fullWIdth">
+                    <input type="text" ng-model="message" name="message" class="form-control fullWIdth" placeholder="Enter a message">
                 </form>
             </div>
-            <div ng-show="activeTab=='chat' && !chatPerson" class="border1Solid heightTH fixPosition">
-                <div class="backGray">
-                    <h3>Please click on one of your friend to chat with...</h3>
-                </div>
+            <div ng-show="!chatPerson" class="border1Solid heightTH fixPosition">
+                <h3 class="h3">Please click on one of your friend to chat with...</h3>
             </div>
-            <div ng-show="activeTab=='aboutMe'">
 
-
-                <edit-about-me ng-show="editable"></edit-about-me>
-                <display-about-me ng-show="!editable"></display-about-me>
-            </div>
         </div>
-        <div class="col-sm-4 text-right">
+        <div class="col-sm-3"></div>
+    </div>
+
+    <div class="row" ng-show="activeTab == 'addFriend'">
+        <div class="col-sm-4">
             <h3>User List</h3>
-            <input ng-model="searchText" placeholder="Search by name or email">
-            <ul>
-                <li ng-repeat="user in userList | filter:searchText track by $index" ng-click="addFriend(user)">
-                    <a href="javascript:void(0)">{{user.fullName}}</a>
+            <input ng-model="searchText" style="width: 100%" placeholder="Search by name or email">
+            <ul class="list-group">
+                <li ng-repeat="user in userList | filter:searchText track by $index" ng-class="showUser==user?'list-group-item-info':'list-group-item-success'" class="list-group-item list-group-item-success">
+                    <span class="btn" ng-click="showUserDetail(user)">{{user.fullName}}</span>
+                    <span class="alert-link pull-right addMe" ng-click="addFriend(user)">Add Friend</span>
                 </li>
             </ul>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-7" ng-show="showUser">
+            <h3>User Detail</h3>
+            <div class="">
+                Name : {{showUser.fullName}}
+            </div>
+            <div>
+                Email : {{showUser.email}}
+            </div>
         </div>
     </div>
 </div>

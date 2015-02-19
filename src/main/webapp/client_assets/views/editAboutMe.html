@@ -1,84 +1,84 @@
-<form class="form-horizontal" role="form" name="profile" novalidate ng-submit="saveProfile(profileDetail)">
-    <div class="row">
-        <button class="btn btn-default pull-right" ng-click="cancelProfileEdit()">Cancel Edit</button>
-        <button type="submit" name="profileSubmit" class="btn btn-primary pull-right">Save</button>
-    </div><br>
+<form class="form-horizontal row" role="form" name="profile" novalidate>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-11">
+        <div class="row">
+            <!--<div class="col-sm-1"></div>-->
+            <button class="btn btn-default col-sm-1" ng-click="cancelProfileEdit()">Cancel Edit</button>
+            <button type="submit" name="profileSubmit" ng-click="saveProfile(profileDetail)" class="btn btn-default col-sm-1">Save</button>
+        </div><br>
 
-    <div class="form-group">
-        <div class="row">
-            <label for="fName" class="col-sm-6">First Name:</label>
-            <div class="col-sm-6 minHeight" >
-                <input type="text" name="fName" ng-model="profileDetail.firstName" id="fName" placeholder="Your first name" required><br>
-                <span class="text-danger" ng-show="profile.fName.$dirty && profile.fName.$error.required">You sure have a first name!</span>
+        <div class="form-group col-sm-4">
+            <div class="row">
+                <label for="fName" class="col-sm-6">First Name:</label>
+                <div class="col-sm-6 minHeight" >
+                    <input class="form-control"type="text" name="fName" ng-model="profileDetail.firstName" id="fName" placeholder="Your first name" required><br>
+                    <span class="text-danger" ng-show="profile.fName.$dirty && profile.fName.$error.required">You sure have a first name!</span>
+                </div>
+            </div>
+            <div class="row">
+                <label for="lName" class="col-sm-6">Last Name:</label>
+                <div class="col-sm-6 minHeight">
+                    <input class="form-control"type="text" name="lName" ng-model="profileDetail.lastName" id="lName" placeholder="Your last name">
+                </div>
+            </div>
+            <div class="row">
+                <label for="flName" class="col-sm-6">Full Name:</label>
+                <div class="col-sm-6 minHeight">
+                    <input class="form-control"type="text" name="flName" ng-model="profileDetail.fullName" id="flName" placeholder="Your full name">
+                </div>
+            </div>
+            <div class="row">
+                <label for="mbNo" class="col-sm-6">Phone/Mobile Number:</label>
+                <div class="col-sm-6 minHeight">
+                    <input class="form-control"type="text" name="mbNo" ng-model="profileDetail.phone" id="mbNo" placeholder="Your contact no.">
+                </div>
             </div>
         </div>
-        <div class="row">
-            <label for="lName" class="col-sm-6">Last Name:</label>
-            <div class="col-sm-6 minHeight">
-                <input type="text" name="lName" ng-model="profileDetail.lastName" id="lName" placeholder="Your last name">
-            </div>
-        </div>
-        <div class="row">
-            <label for="flName" class="col-sm-6">Full Name:</label>
-            <div class="col-sm-6 minHeight">
-                <input type="text" name="flName" ng-model="profileDetail.fullName" id="flName" placeholder="Your full name">
-            </div>
-        </div>
-        <div class="row">
-            <label for="mbNo" class="col-sm-6">Phone/Mobile Number:</label>
-            <div class="col-sm-6 minHeight">
-                <input type="text" name="mbNo" ng-model="profileDetail.phone" id="mbNo" placeholder="Your contact no.">
-            </div>
-        </div>
-    </div>
 
-
-    <div class="form-group">
-        <h3>Address :</h3>
-        <div class="row">
-            <label for="ADL1" class="col-sm-6">Address Line 1:</label>
-            <div class="col-sm-6 minHeight">
-                <input type="text" name="ADL1" ng-model="profileDetail.address.addressLine1" id="ADL1" placeholder="Address Line 1">
+        <div class="col-sm-1"></div>
+        <div class="form-group col-sm-7">
+            <div class="row">
+                <label for="ADL1" class="col-sm-3">Address Line 1:</label>
+                <div class="col-sm-9 minHeight">
+                    <input class="form-control"type="text" name="ADL1" ng-model="profileDetail.address.addressLine1" id="ADL1" placeholder="Address Line 1">
+                </div>
+            </div>
+            <div class="row">
+                <label for="ADL2" class="col-sm-3">Address Line 2:</label>
+                <div class="col-sm-9 minHeight">
+                    <input class="form-control"type="text" name="ADL2" ng-model="profileDetail.address.addressLine2" id="ADL2" placeholder="Address Line 2">
+                </div>
+            </div>
+            <div class="row">
+                <label for="landmark" class="col-sm-3">Landmark:</label>
+                <div class="col-sm-9 minHeight">
+                    <input class="form-control"type="text" name="landmark" ng-model="profileDetail.address.landMark" id="landmark" placeholder="Any Landmark Nearby">
+                </div>
+            </div>
+            <div class="row">
+                <label for="city" class="col-sm-3">City:</label>
+                <div class="col-sm-9 minHeight">
+                    <input class="form-control"type="text" name="city" ng-model="profileDetail.address.city" id="city" placeholder="Your city">
+                </div>
+            </div>
+            <div class="row">
+                <label for="state" class="col-sm-3">State:</label>
+                <div class="col-sm-9 minHeight">
+                    <input class="form-control"type="text" name="state" ng-model="profileDetail.address.state" id="state" placeholder="Your state">
+                </div>
+            </div>
+            <div class="row">
+                <label for="country" class="col-sm-3">Country:</label>
+                <div class="col-sm-9 minHeight">
+                    <input class="form-control"type="text" name="country" ng-model="profileDetail.address.country" id="country" placeholder="Your country">
+                </div>
+            </div>
+            <div class="row">
+                <label for="zipCode" class="col-sm-3">ZIP Code:</label>
+                <div class="col-sm-9 minHeight">
+                    <input class="form-control"type="number" name="zipCode" ng-model="profileDetail.address.zipCode" id="zipCode" placeholder="Postal Code">
+                </div>
             </div>
         </div>
-        <div class="row">
-            <label for="ADL2" class="col-sm-6">Address Line 2:</label>
-            <div class="col-sm-6 minHeight">
-                <input type="text" name="ADL2" ng-model="profileDetail.address.addressLine2" id="ADL2" placeholder="Address Line 2">
-            </div>
-        </div>
-        <div class="row">
-            <label for="landmark" class="col-sm-6">Landmark:</label>
-            <div class="col-sm-6 minHeight">
-                <input type="text" name="landmark" ng-model="profileDetail.address.landMark" id="landmark" placeholder="Any Landmark Nearby">
-            </div>
-        </div>
-        <div class="row">
-            <label for="city" class="col-sm-6">City:</label>
-            <div class="col-sm-6 minHeight">
-                <input type="text" name="city" ng-model="profileDetail.address.city" id="city" placeholder="Your city">
-            </div>
-        </div>
-        <div class="row">
-            <label for="state" class="col-sm-6">State:</label>
-            <div class="col-sm-6 minHeight">
-                <input type="text" name="state" ng-model="profileDetail.address.state" id="state" placeholder="Your state">
-            </div>
-        </div>
-        <div class="row">
-            <label for="country" class="col-sm-6">Country:</label>
-            <div class="col-sm-6 minHeight">
-                <input type="text" name="country" ng-model="profileDetail.address.country" id="country" placeholder="Your country">
-            </div>
-        </div>
-        <div class="row">
-            <label for="zipCode" class="col-sm-6">ZIP Code:</label>
-            <div class="col-sm-6 minHeight">
-                <input type="number" name="zipCode" ng-model="profileDetail.address.zipCode" id="zipCode" placeholder="Postal Code">
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <button type="submit" name="profileSubmit" class="btn btn-primary pull-right">Save</button>
     </div>
 </form>

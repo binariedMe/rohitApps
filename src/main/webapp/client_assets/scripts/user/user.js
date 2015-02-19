@@ -5,10 +5,18 @@ var userController = app.controller('userController',
             $rootScope.headerText = "Java Chat Server";
             $rootScope.backToServerChoice = true;
             $rootScope.showLogoutBtn = true;
-            $scope.user = $scope.profileDetail = $route.current.locals.userData;
+            $scope.user = $route.current.locals.userData;
+            $scope.profileDetail = angular.copy($scope.user);
             $scope.profileDetail.address = $scope.profileDetail.address ?
                 $scope.profileDetail.address : {};
+
             $scope.profileDetail.address.zipCode = $scope.profileDetail.address.zipCode != 0?$scope.profileDetail.address.zipCode:null;
+
+            $scope.chatPerson = null;
+            $scope.activeTab = 'aboutMe';
+            $scope.editable = false;
+            $scope.showUser = null;
+
             $scope.addressString = function(addressObject){
                 addressObject = _.values(addressObject);
                 var addressString = "";
@@ -18,10 +26,6 @@ var userController = app.controller('userController',
                 addressString = addressString.substring(0,addressString.length-1);
                 return addressString;
             };
-            $scope.userAddress = $scope.addressString($scope.profileDetail.address);
-            $scope.chatPerson = null;
-            $scope.activeTab = 'aboutMe';
-            $scope.editable = false;
             $scope.getUserList = function(){
                 var url= '/getUserList';
                 var data = "user=" + $scope.user.email;
@@ -37,6 +41,8 @@ var userController = app.controller('userController',
             };
 
             $scope.addFriend = function(user){
+                if($scope.showUser && $scope.showUser.email && $scope.showUser.email==user.email)
+                    $scope.showUser = null;
                 var url = '/addFriend';
                 var data = "user=" + $scope.user.email + "&friend=" + user.email +"&friend_name=" + user.fullName;
                 angularPostService.serve(data,url).then(function(){
@@ -58,8 +64,13 @@ var userController = app.controller('userController',
 
             $scope.addToChat = function(reciever){
                 $scope.chatPerson = reciever;
-                $scope.activeTab = 'chat';
                 $scope.fetchMessage();
+            };
+            $scope.showUserDetail = function(user){
+              $scope.showUser = user;
+            };
+            $scope.activeMe = function(activeTab){
+              $scope.activeTab = activeTab;
             };
             $scope.msgSubmit = function(){
                 var data = "user=" + $scope.user.email + "&recepient=" + $scope.chatPerson.email
@@ -93,8 +104,16 @@ var userController = app.controller('userController',
                 $scope.editable = true;
             };
             $scope.cancelProfileEdit = function(){
-                $scope.profileDetail = $scope.user;
-                $scope.editable = true;
+                console.log("user:",$scope.user);
+                console.log("profile:", $scope.profileDetail);
+                $scope.profileDetail = angular.copy($scope.user);
+                $scope.profileDetail.address = $scope.profileDetail.address ?
+                    $scope.profileDetail.address : {};
+                $scope.profileDetail.address.zipCode = $scope.profileDetail.address.zipCode != 0?
+                    $scope.profileDetail.address.zipCode:null;
+                $scope.editable = false;
+                console.log("user1:",$scope.user);
+                console.log("profile1:", $scope.profileDetail);
             };
             $scope.saveProfile = function(profileDetail){
                 if(profileDetail.firstName) {
@@ -127,7 +146,6 @@ var userController = app.controller('userController',
                     };
                     _.defaults(profileDetail.address, defaultAddress);
                     _.defaults(profileDetail,defaultUserData);
-                    console.log(profileDetail);
                     var data = "user=" + $scope.user.email
                         + "&firstName=" + profileDetail.firstName
                         + "&lastName=" + profileDetail.lastName
@@ -143,7 +161,12 @@ var userController = app.controller('userController',
                     var url = '/updateProfile';
                     angularPostService.serve(data, url).then(function (profileData) {
                         if(profileData){
-                            $scope.user = $scope.profileDetail = profileData;
+                            $scope.user = profileData;
+                            $scope.profileDetail = angular.copy($scope.user);
+                            $scope.profileDetail.address = $scope.profileDetail.address ?
+                                $scope.profileDetail.address : {};
+                            $scope.profileDetail.address.zipCode = $scope.profileDetail.address.zipCode != 0?
+                                $scope.profileDetail.address.zipCode:null;
                             $scope.userAddress = $scope.addressString(profileData.address);
                             $scope.editable = false;
                         }
@@ -155,6 +178,7 @@ var userController = app.controller('userController',
 
             $scope.getFriends();
             $scope.getUserList();
+            $scope.userAddress = $scope.addressString($scope.profileDetail.address);
         }
     ]);
 

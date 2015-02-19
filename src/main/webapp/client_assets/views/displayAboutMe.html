@@ -1,16 +1,22 @@
 <div class="row">
-    <button name="editProfile " class="btn btn-primary pull-right" ng-click="editProfile()">Edit</button>
-</div><br>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-11">
+        <div class="row">
+            <!--<div class="col-sm-1"></div>-->
+            <button name="editProfile" class="btn btn-default col-sm-1" ng-click="editProfile()">Edit</button>
+        </div><br>
 
-<div class="row">
-    <div class="col-sm-6">Name :</div>
-    <div class="col-sm-6">{{user.fullName}}</div>
-</div><br>
-<div class="row">
-    <div class="col-sm-6">Contact No. :</div>
-    <div class="col-sm-6">{{user.phone}}</div>
-</div><br>
-<div class="row">
-    <div class="col-sm-6">Address :</div>
-    <div class="col-sm-6">{{userAddress}}</div>
+        <div class="row">
+            <div class="col-sm-1">Name :</div>
+            <div class="col-sm-10">{{user.fullName}}</div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-1">Contact No. :</div>
+            <div class="col-sm-10">{{user.phone}}</div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-1">Address :</div>
+            <div class="col-sm-10">{{userAddress}}</div>
+        </div>
+    </div>
 </div>
