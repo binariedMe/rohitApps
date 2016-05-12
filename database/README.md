@@ -22,7 +22,7 @@ A user/system needs to be authorized to either produce or consume message for a 
 5. topic_servers=list-of-servers-for-a-topic-separated-by-comma-in-the-format-host:ip
 
  5. Rest endpoint exposed :
- 1. url : "/user/login", method : post, body : {username : username , password : password}, headers : {content-type : application/json}, response : {token : token}
- 2. url : "/api/produce/{topic}" , method : post, body : message , content-type : application/json, headers : {content-type : application/json, common : {Authorization : "Bearer " + token}}, response : true/false
+1. url : "/user/login", method : post, body : {username : username , password : password}, headers : {content-type : application/json}, response : {token : token}
+2. url : "/api/produce/{topic}" , method : post, body : message , content-type : application/json, headers : {content-type : application/json, common : {Authorization : "Bearer " + token}}, response : true/false
  
 
