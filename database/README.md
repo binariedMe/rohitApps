@@ -25,7 +25,7 @@ A user/system needs to be authorized to either produce or consume message for a 
  1. url : "/user/login", method : post, body : {username : username , password : password}, headers : {content-type : application/json}, response : {token : token}
  2. url : "/api/message" , method : post, body :{  topic : topic, message : message , id : id} , headers : {content-type : application/json, common : {Authorization : "Bearer " + token}}, response : {status : status, statusCode : statusCode, response : response}
  
- reference for producer response in the format : name(status, statusCode, response) 
+ Reference for producer response in the format : name(status, statusCode, response) 
  
     INVALIDTOKEN(false,-100,"Invalid token"),
 	EXPIREDTOKEN(false, -107, "Token used is expired"),
